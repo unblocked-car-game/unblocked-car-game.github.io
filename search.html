@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Results</title>
+</head>
+<body>
+  <input id="searchInput" type="search" placeholder="Search..." />
+  <div id="listgame">
+    <!-- Example game items -->
+    <div class="game-item">Slope</div>
+    <div class="game-item">Car Racing</div>
+    <div class="game-item">Skill Challenge</div>
+    <!-- Add your real game items here -->
+  </div>
+  <script>
+    // Get query from URL
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get('q') || '';
+    const input = document.getElementById('searchInput');
+    input.value = query;
+
+    function filterGames() {
+      const q = input.value.toLowerCase();
+      document.querySelectorAll('.game-item').forEach(item => {
+        item.style.display = item.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    }
+
+    input.addEventListener('input', filterGames);
+
+    // Initial filter on page load
+    filterGames();
+  </script>
+<script src="/js/script.js"></script>
+</body>
+</html>
